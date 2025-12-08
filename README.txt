@@ -7,4 +7,5 @@
     2.Jay
     3.Sam
 
-## Project Description: 
+## Project Description:
+    Recommends movies based on user preferences.
