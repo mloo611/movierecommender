@@ -1,0 +1,19 @@
+# Python venv
+.venv/
+
+# PyCharm settings
+.idea/
+
+# Compiled Python files
+__pycache__/
+
+# Cache files
+*.pyc
+*.pyo
+*.pyd
+
+# Streamlit cache
+.streamlit/
+
+# CSV backups
+*.csv~
