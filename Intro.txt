@@ -1,0 +1,53 @@
+Movie Recommender System
+========================
+
+This document explains how to install the required packages and how to run the Movie Recommender application.
+
+---------------------------------------
+1. Project Purpose
+---------------------------------------
+This application recommends movies based on the genres selected by the user. 
+The app uses a simple dataset (movies.csv) and filters movies matching user preferences.
+The interface is built using Streamlit.
+
+---------------------------------------
+2. Required Tools
+---------------------------------------
+• Python 3
+• pip (Python package manager)
+
+---------------------------------------
+3. Install Dependencies
+---------------------------------------
+In the project folder, run the following command:
+
+    pip install -r requirements.txt
+
+This will install the required Python packages such as:
+- streamlit
+- pandas
+
+---------------------------------------
+4. Run the Application
+---------------------------------------
+To launch the app, run:
+
+    streamlit run app.py
+
+This will open the Streamlit interface in your default browser.
+
+---------------------------------------
+5. How To Use the App
+---------------------------------------
+• Choose one or more genres
+• Click the Recommend button
+• A list of matching movies will appear on the screen
+
+---------------------------------------
+6. Testing (optional)
+---------------------------------------
+If you want to run the recommender test:
+
+    python test_recommender.py
+
+---------------------------------------
