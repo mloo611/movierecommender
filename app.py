@@ -2,42 +2,22 @@ import streamlit as st
 from data_loader import load_movie_data
 from classes.Recommender import Recommender
 
+
 print("DEBUG: App file loaded")
 
 def local_css(file_name):
-    """Loads a local CSS file for custom styling."""
-    try:
-        with open(file_name) as f:
-            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-    except FileNotFoundError:
-        pass # Fail silently if css is missing
-
-def display_movies(movies):
-    """Helper function to display movies in a grid."""
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    # Create rows of 2 columns
-    for i in range(0, len(movies), 2):
-        cols = st.columns(2)
-        for j in range(2):
-            if i + j < len(movies):
-                movie = movies[i + j]
-                with cols[j]:
-                    # Using HTML/CSS for card styling
-                    st.markdown(f"""
-                    <div class="movie-card">
-                        <div class="movie-title">{movie.title}</div>
-                        <div class="movie-genres">{movie.genres.replace('|', ' • ')}</div>
-                        <div class="movie-description">{movie.description}</div>
-                    </div>
-                    """, unsafe_allow_html=True)
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 def main():
     print("DEBUG: Main function started")
     st.set_page_config(page_title="CineMatch AI", page_icon="🎬", layout="wide")
     
-    # Optional: Load custom CSS
-    # local_css("style.css")
+    # Load custom CSS
+    # try:
+    #     local_css("style.css")
+    # except FileNotFoundError:
+    #     st.warning("style.css not found. Please ensure it exists.")
 
     st.title("🎬 CineMatch AI")
     st.markdown("### Discover your next favorite movie with the power of Machine Learning")
@@ -50,10 +30,8 @@ def main():
     # Tabs for different modes
     tab1, tab2, tab3 = st.tabs(["🎯 By Genre", "🔍 By Plot (AI)", "📊 Dataset"])
 
-    # --- TAB 1: Genre Filter ---
     with tab1:
         st.subheader("Filter by Genres")
-        # Extract unique genres from the dataframe
         all_genres = sorted({g for row in df["genres"] for g in row.split("|")})
         selected_genres = st.multiselect("Select genres you like:", all_genres)
         
@@ -64,7 +42,6 @@ def main():
                 results = recommender.recommend_by_genre(selected_genres, top_k=6)
                 display_movies(results)
 
-    # --- TAB 2: AI Plot Search ---
     with tab2:
         st.subheader("Describe what you want to watch")
         prompt = st.text_area("Enter a plot description (e.g., 'A space adventure with a hero saving the galaxy')", height=100)
@@ -79,10 +56,27 @@ def main():
                 else:
                     display_movies(results)
 
-    # --- TAB 3: Dataset View ---
     with tab3:
         st.subheader("Explore the Dataset")
         st.dataframe(df, use_container_width=True)
 
-if __name__ == "__main__":
+def display_movies(movies):
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Create rows of 3 columns
+    for i in range(0, len(movies), 2):
+        cols = st.columns(2)
+        for j in range(2):
+            if i + j < len(movies):
+                movie = movies[i + j]
+                with cols[j]:
+                    st.markdown(f"""
+                    <div class="movie-card">
+                        <div class="movie-title">{movie.title}</div>
+                        <div class="movie-genres">{movie.genres.replace('|', ' • ')}</div>
+                        <div class="movie-description">{movie.description}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+if _name_ == "_main_":
     main()
