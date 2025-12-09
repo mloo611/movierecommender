@@ -1,6 +1,6 @@
 import streamlit as st
 from data_loader import load_movie_data
-from class_test.Recommender import Recommender
+from classes.Recommender import Recommender
 
 
 print("DEBUG: App file loaded")
@@ -78,5 +78,5 @@ def display_movies(movies):
                     </div>
                     """, unsafe_allow_html=True)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
