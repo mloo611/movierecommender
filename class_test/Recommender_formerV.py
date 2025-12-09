@@ -1,4 +1,4 @@
-from classes.Movie import Movie
+from class_test.Movie import Movie
 
 class Recommender:
     def __init__(self, df):

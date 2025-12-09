@@ -1,6 +1,6 @@
 import streamlit as st
 from data_loader import load_movie_data
-from classes.Recommender import Recommender
+from class_test.Recommender import Recommender
 
 
 print("DEBUG: App file loaded")

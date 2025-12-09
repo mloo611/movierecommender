@@ -1,5 +1,5 @@
 import pandas as pd
-from classes.Recommender import Recommender
+from class_test.Recommender import Recommender
 
 def test_recommender():
     # Load data

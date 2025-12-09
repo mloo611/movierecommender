@@ -1,4 +1,4 @@
-from classes.Movie import Movie
+from class_test.Movie import Movie
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
